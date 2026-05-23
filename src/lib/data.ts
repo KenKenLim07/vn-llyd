@@ -65,7 +65,7 @@ export const workCategories = [
     title: "Events",
     description:
       "Corporate gatherings and private celebrations documented with cinematic flair.",
-    image: img("eventCrowd"),
+    image: img("eventParty"),
     aspect: "wide" as const,
   },
 ];
@@ -106,21 +106,21 @@ export const projects = [
     images: [
       img("weddingB"),
       img("weddingA"),
-      img("fashionPortrait"),
-      img("portraitB"),
+      img("weddingC"),
+      img("weddingA"),
     ],
   },
   {
     id: "faces",
-    title: "Faces of the City",
+    title: "Coastal Portraits",
     story:
-      "Portraits of strangers who became muses. A documentary exploration of identity, resilience, and the stories written upon every face.",
-    heroImage: img("manPortraitB"),
+      "Intimate portraits shaped by sea air and soft light. Each frame explores poise, movement, and the quiet confidence found between tides.",
+    heroImage: img("portraitBack"),
     images: [
-      img("manPortraitA"),
       img("portraitA"),
+      img("portraitBack"),
+      img("portraitB"),
       img("womanPortraitA"),
-      img("fashionPortrait"),
     ],
   },
 ];
@@ -134,8 +134,8 @@ export const galleryImages = [
   },
   {
     id: "g2",
-    src: img("portraitB"),
-    alt: "Portrait in natural light",
+    src: img("portraitBack"),
+    alt: "Portrait on the beach",
     size: "small" as const,
   },
   {
@@ -158,8 +158,8 @@ export const galleryImages = [
   },
   {
     id: "g6",
-    src: img("cityNight"),
-    alt: "City lights at night",
+    src: img("eventParty"),
+    alt: "Event celebration at Shamrock",
     size: "small" as const,
   },
   {
@@ -177,7 +177,7 @@ export const galleryImages = [
   {
     id: "g9",
     src: img("portraitA"),
-    alt: "Portrait study",
+    alt: "Beach portrait session",
     size: "small" as const,
   },
   {
@@ -188,8 +188,8 @@ export const galleryImages = [
   },
   {
     id: "g11",
-    src: img("concert"),
-    alt: "Concert atmosphere",
+    src: img("eventStadium"),
+    alt: "Event at Shamrock stadium",
     size: "medium" as const,
   },
   {

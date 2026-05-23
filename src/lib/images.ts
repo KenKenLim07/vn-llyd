@@ -1,15 +1,27 @@
-/** Local portfolio images — replace files in /public/portfolio/ anytime. */
+/** Local portfolio images — replace files in /public/portfolio/ or /public/clients-photos/ anytime. */
 export const images = {
   hero: "/portfolio/hero.jpg",
-  portraitA: "/portfolio/portrait-a.jpg",
-  portraitB: "/portfolio/portrait-b.jpg",
-  weddingA: "/portfolio/wedding-a.jpg",
-  weddingB: "/portfolio/wedding-b.jpg",
-  weddingC: "/portfolio/wedding-c.jpg",
   mountains: "/portfolio/hero.jpg",
+
+  // Client portraits
+  portraitA: "/clients-photos/girls-back.jpg",
+  portraitBack: "/clients-photos/girl-laying-at-beach.jpg",
+  portraitB: "/portfolio/portrait-b.jpg",
+
+  // Client weddings
+  weddingA: "/clients-photos/wedding.jpg",
+  weddingB: "/clients-photos/wedding2.jpg",
+  weddingC: "/clients-photos/wedding1.jpg",
+
+  // Client events
+  eventCrowd: "/clients-photos/events-perlas-sang-tampisaw.jpg",
+  eventParty: "/clients-photos/event-party-shamrock.jpg",
+  eventStadium: "/clients-photos/event-shamrock-stadium.jpg",
+  eventRunway: "/clients-photos/events-pampisaw-runway.jpg",
+
+  // Placeholder portfolio (travel, street, projects)
   cityStreet: "/portfolio/city-street.jpg",
   cityNight: "/portfolio/city-street.jpg",
-  eventCrowd: "/portfolio/event-crowd.jpg",
   japanTemple: "/portfolio/japan-temple.jpg",
   japanStreet: "/portfolio/japan-street.jpg",
   beach: "/portfolio/beach.jpg",
@@ -20,8 +32,6 @@ export const images = {
   oceanSunset: "/portfolio/ocean-sunset.jpg",
   fashionPortrait: "/portfolio/fashion-portrait.jpg",
   concert: "/portfolio/concert.jpg",
-  manPortraitA: "/portfolio/man-portrait-a.jpg",
-  manPortraitB: "/portfolio/man-portrait-b.jpg",
   womanPortraitA: "/portfolio/woman-portrait-a.jpg",
   womanTestimonial: "/portfolio/testimonial-woman.jpg",
   womanProfessional: "/portfolio/testimonial-professional.jpg",

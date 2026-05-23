@@ -76,7 +76,7 @@ export function HeroSection() {
               href="#work"
               className="cursor-pointer border border-white bg-white px-8 py-3.5 text-xs tracking-[0.2em] text-zinc-950 uppercase transition-colors duration-200 hover:bg-transparent hover:text-white"
             >
-              View Portfolio
+              View Collections
             </a>
             <a
               href="#contact"

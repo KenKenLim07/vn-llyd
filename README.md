@@ -30,7 +30,8 @@ Edit `src/lib/data.ts` for copy, projects, and contact details.
 
 | Folder | Purpose |
 |--------|---------|
-| `public/portfolio/` | Gallery, hero, work, and project images (~24 files) |
+| `public/portfolio/` | Hero, travel, street, and other placeholder shots |
+| `public/clients-photos/` | Client weddings, events, and portraits |
 | `public/client-profile/` | About section portrait (`vn-llyd.jpg`) |
 
 Drop in new JPGs using the **same filenames** — no code changes needed. Image keys are mapped in `src/lib/images.ts`.
