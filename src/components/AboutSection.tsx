@@ -15,9 +15,9 @@ export function AboutSection() {
                 src={aboutContent.portrait}
                 alt={aboutContent.portraitAlt}
                 fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                loading="lazy"
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 100vw, 400px"
+                quality={85}
               />
             </div>
           </ScrollReveal>

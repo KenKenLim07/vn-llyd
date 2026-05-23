@@ -1,12 +1,12 @@
 "use client";
 
 import { siteConfig } from "@/lib/data";
-import { photos, unsplash } from "@/lib/images";
+import { images } from "@/lib/images";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 
-const HERO_IMAGE = unsplash(photos.hero);
+const HERO_IMAGE = images.hero;
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();

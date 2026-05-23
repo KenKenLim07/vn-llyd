@@ -24,7 +24,26 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Customize
 
-Edit `src/lib/data.ts` to update photographer name, copy, images, projects, and contact details.
+Edit `src/lib/data.ts` for copy, projects, and contact details.
+
+### Replace photos
+
+| Folder | Purpose |
+|--------|---------|
+| `public/portfolio/` | Gallery, hero, work, and project images (~24 files) |
+| `public/client-profile/` | About section portrait (`vn-llyd.jpg`) |
+
+Drop in new JPGs using the **same filenames** — no code changes needed. Image keys are mapped in `src/lib/images.ts`.
+
+To re-fetch Unsplash placeholders: `./scripts/download-portfolio-images.sh`
+
+### Vercel
+
+Set environment variable:
+
+```
+NEXT_PUBLIC_SITE_URL=https://shutterstories-photography.vercel.app
+```
 
 ## Tech Stack
 
