@@ -53,7 +53,7 @@ export function Navbar() {
             href="/"
             className="font-heading text-sm font-medium tracking-[0.25em] text-white uppercase transition-opacity duration-200 hover:opacity-70"
           >
-            {siteConfig.name}
+            {siteConfig.brandShort}
           </Link>
 
           <ul className="hidden items-center gap-10 md:flex">
@@ -92,7 +92,7 @@ export function Navbar() {
           >
             <div className="flex items-center justify-between px-6 py-4">
               <span className="font-heading text-sm tracking-[0.25em] text-white uppercase">
-                {siteConfig.name}
+                {siteConfig.brandShort}
               </span>
               <button
                 type="button"

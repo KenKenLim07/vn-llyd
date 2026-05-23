@@ -1,12 +1,12 @@
 "use client";
 
 import { siteConfig } from "@/lib/data";
+import { photos, unsplash } from "@/lib/images";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1452587925148-ce544e77ee70?w=1920&q=90";
+const HERO_IMAGE = unsplash(photos.hero);
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -44,7 +44,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            Fine Art Photography
+            {siteConfig.brand}
           </motion.p>
 
           <motion.h1

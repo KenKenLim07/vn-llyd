@@ -13,7 +13,7 @@ export function AboutSection() {
             <div className="relative aspect-[3/4] max-w-md overflow-hidden">
               <Image
                 src={aboutContent.portrait}
-                alt="Elena Vasquez — photographer portrait"
+                alt={aboutContent.portraitAlt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40vw"

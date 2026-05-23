@@ -1,27 +1,18 @@
 "use client";
 
-import { siteConfig } from "@/lib/data";
+import { siteConfig, socialLinks } from "@/lib/data";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { Facebook, Instagram, Mail, MessageCircle, Send } from "lucide-react";
+import {
+  FacebookIcon,
+  InstagramIcon,
+} from "@/components/icons/SocialIcons";
+import { Send } from "lucide-react";
 import { FormEvent, useState } from "react";
 
-const socialLinks = [
-  {
-    label: "Instagram",
-    href: siteConfig.instagram,
-    icon: Instagram,
-  },
-  {
-    label: "Facebook",
-    href: siteConfig.facebook,
-    icon: Facebook,
-  },
-  {
-    label: "Messenger",
-    href: siteConfig.messenger,
-    icon: MessageCircle,
-  },
-];
+const socialIcons = {
+  Facebook: FacebookIcon,
+  Instagram: InstagramIcon,
+} as const;
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
@@ -44,31 +35,26 @@ export function ContactSection() {
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-400">
               Whether you&apos;re planning a wedding, commissioning a portrait
-              session, or collaborating on an editorial project—I&apos;d love to
-              hear your vision.
+              session, or collaborating on an editorial project—{siteConfig.name}{" "}
+              would love to hear your vision.
             </p>
 
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="mt-8 inline-flex cursor-pointer items-center gap-3 text-white transition-opacity duration-200 hover:opacity-70"
-            >
-              <Mail className="h-5 w-5" />
-              <span className="text-sm tracking-wide">{siteConfig.email}</span>
-            </a>
-
-            <div className="mt-10 flex gap-6">
-              {socialLinks.map(({ label, href, icon: Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cursor-pointer text-zinc-400 transition-colors duration-200 hover:text-white"
-                  aria-label={label}
-                >
-                  <Icon className="h-5 w-5" />
-                </a>
-              ))}
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-8">
+              {socialLinks.map(({ label, href }) => {
+                const Icon = socialIcons[label];
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex cursor-pointer items-center gap-3 text-white transition-opacity duration-200 hover:opacity-70"
+                  >
+                    <Icon className="h-5 w-5 shrink-0" />
+                    <span className="text-sm tracking-wide">{label}</span>
+                  </a>
+                );
+              })}
             </div>
           </ScrollReveal>
 
@@ -79,7 +65,8 @@ export function ContactSection() {
                   Thank you
                 </p>
                 <p className="mt-4 text-zinc-400">
-                  Your message has been received. I&apos;ll be in touch shortly.
+                  Your message has been received.{" "}
+                  {siteConfig.name} will be in touch shortly.
                 </p>
               </div>
             ) : (

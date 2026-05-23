@@ -77,7 +77,7 @@ export function ProjectShowcase() {
                     >
                       {project.images.map((img, i) => (
                         <div
-                          key={img}
+                          key={`${project.id}-${i}`}
                           className={`relative overflow-hidden ${
                             i === 0 ? "col-span-2 aspect-[2/1]" : "aspect-square"
                           }`}

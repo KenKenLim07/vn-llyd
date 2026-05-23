@@ -7,12 +7,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 
-const sizeClasses = {
-  small: "row-span-1",
-  medium: "row-span-2",
-  large: "row-span-3",
-};
-
 export function MasonryGallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const prefersReducedMotion = useReducedMotion();
