@@ -1,10 +1,10 @@
 "use client";
 
+import { PortfolioImage } from "@/components/PortfolioImage";
 import { siteConfig } from "@/lib/data";
 import { images } from "@/lib/images";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import Image from "next/image";
 
 const HERO_IMAGE = images.hero;
 
@@ -17,27 +17,28 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative flex h-screen min-h-[600px] items-end overflow-hidden bg-zinc-950"
+      className="relative flex min-h-[600px] h-screen items-center justify-center overflow-hidden bg-zinc-950 md:items-end md:justify-start"
       aria-label="Hero"
     >
       <motion.div className="absolute inset-0" style={{ y: imageY }}>
-        <Image
+        <PortfolioImage
           src={HERO_IMAGE}
           alt="Cinematic photography hero — dramatic landscape at golden hour"
           fill
           priority
+          shimmer="dark"
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-zinc-950/20" />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 z-20 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-zinc-950/20" />
+        <div className="absolute inset-0 z-20 bg-black/30" />
       </motion.div>
 
       <motion.div
-        className="relative z-10 w-full px-6 pb-24 md:px-12 md:pb-32 lg:px-16"
+        className="relative z-30 w-full px-6 pb-28 pt-24 text-center md:pb-32 md:pt-0 md:text-left lg:px-16 md:px-12"
         style={{ y: textY, opacity }}
       >
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto flex max-w-7xl flex-col items-center md:items-start">
           <motion.p
             className="mb-4 text-xs tracking-[0.35em] text-zinc-400 uppercase"
             initial={{ opacity: 0, y: 20 }}
@@ -66,7 +67,7 @@ export function HeroSection() {
           </motion.p>
 
           <motion.div
-            className="mt-10 flex flex-wrap gap-4"
+            className="mt-10 flex flex-wrap justify-center gap-4 md:justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -89,7 +90,7 @@ export function HeroSection() {
 
       <motion.a
         href="#work"
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 cursor-pointer flex-col items-center gap-2 text-zinc-400 transition-colors duration-200 hover:text-white"
+        className="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 cursor-pointer flex-col items-center gap-2 text-zinc-400 transition-colors duration-200 hover:text-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.8 }}

@@ -1,9 +1,10 @@
 "use client";
 
+import { PortfolioImage } from "@/components/PortfolioImage";
+import { SectionHeader } from "@/components/SectionHeader";
 import { projects } from "@/lib/data";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { motion, useReducedMotion } from "framer-motion";
-import Image from "next/image";
 
 export function ProjectShowcase() {
   const prefersReducedMotion = useReducedMotion();
@@ -12,12 +13,11 @@ export function ProjectShowcase() {
     <section id="projects" className="bg-zinc-950 py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
         <ScrollReveal>
-          <p className="text-xs tracking-[0.35em] text-zinc-500 uppercase">
-            Case Studies
-          </p>
-          <h2 className="font-heading mt-3 text-4xl font-light tracking-tight text-white md:text-5xl lg:text-6xl">
-            Featured Projects
-          </h2>
+          <SectionHeader
+            label="Case Studies"
+            title="Featured Projects"
+            theme="dark"
+          />
         </ScrollReveal>
 
         <div className="mt-20 space-y-32 md:space-y-40 lg:space-y-48">
@@ -28,7 +28,7 @@ export function ProjectShowcase() {
               <ScrollReveal key={project.id}>
                 <article className="group">
                   <div
-                    className={`relative aspect-[16/9] overflow-hidden ${
+                    className={`relative mx-auto aspect-[16/9] w-full overflow-hidden lg:mx-0 ${
                       isReversed ? "lg:ml-auto lg:w-[85%]" : "lg:w-[85%]"
                     }`}
                   >
@@ -37,15 +37,16 @@ export function ProjectShowcase() {
                       whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
                       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <Image
+                      <PortfolioImage
                         src={project.heroImage}
                         alt={`${project.title} — hero photograph`}
                         fill
+                        shimmer="dark"
                         className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                         sizes="(max-width: 1024px) 100vw, 85vw"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
+                      <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
                     </motion.div>
                   </div>
 
@@ -55,7 +56,7 @@ export function ProjectShowcase() {
                     }`}
                   >
                     <div
-                      className={`lg:col-span-5 ${
+                      className={`flex flex-col items-center text-center lg:col-span-5 lg:items-start lg:text-left ${
                         isReversed ? "lg:[direction:ltr]" : ""
                       }`}
                     >
@@ -65,7 +66,7 @@ export function ProjectShowcase() {
                       <h3 className="font-heading mt-3 text-3xl font-light text-white md:text-4xl">
                         {project.title}
                       </h3>
-                      <p className="mt-5 text-base leading-relaxed text-zinc-400">
+                      <p className="mt-5 max-w-lg text-base leading-relaxed text-zinc-400">
                         {project.story}
                       </p>
                     </div>
@@ -82,10 +83,11 @@ export function ProjectShowcase() {
                             i === 0 ? "col-span-2 aspect-[2/1]" : "aspect-square"
                           }`}
                         >
-                          <Image
+                          <PortfolioImage
                             src={img}
                             alt={`${project.title} preview ${i + 1}`}
                             fill
+                            shimmer="dark"
                             className="object-cover transition-transform duration-500 hover:scale-105"
                             sizes="(max-width: 768px) 50vw, 30vw"
                             loading="lazy"

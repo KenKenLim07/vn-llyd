@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import Image from "next/image";
+import { PortfolioImage } from "@/components/PortfolioImage";
 import { useCallback, useEffect } from "react";
 
 type LightboxProps = {
@@ -100,10 +100,11 @@ export function Lightbox({
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           onClick={(e) => e.stopPropagation()}
         >
-          <Image
+          <PortfolioImage
             src={current.src}
             alt={current.alt}
             fill
+            shimmer="dark"
             className="object-contain"
             sizes="100vw"
             priority

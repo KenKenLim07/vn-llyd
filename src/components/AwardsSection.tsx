@@ -1,5 +1,6 @@
 "use client";
 
+import { SectionHeader } from "@/components/SectionHeader";
 import { awards } from "@/lib/data";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
@@ -8,12 +9,7 @@ export function AwardsSection() {
     <section className="bg-zinc-50 py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-4xl px-6 md:px-12 lg:px-16">
         <ScrollReveal>
-          <p className="text-center text-xs tracking-[0.35em] text-zinc-500 uppercase">
-            Recognition
-          </p>
-          <h2 className="font-heading mt-3 text-center text-4xl font-light tracking-tight text-zinc-950 md:text-5xl">
-            Awards & Features
-          </h2>
+          <SectionHeader label="Recognition" title="Awards & Features" />
         </ScrollReveal>
 
         <div className="relative mt-16 md:mt-20">
@@ -25,7 +21,7 @@ export function AwardsSection() {
           <ol className="space-y-12">
             {awards.map((award, index) => (
               <ScrollReveal key={`${award.year}-${award.title}`} delay={index * 0.06}>
-                <li className="relative pl-12 md:grid md:grid-cols-2 md:gap-12 md:pl-0">
+                <li className="relative pl-12 text-center md:grid md:grid-cols-2 md:gap-12 md:pl-0 md:text-left">
                   <div
                     className="absolute top-1 left-2.5 h-3 w-3 rounded-full border-2 border-zinc-950 bg-zinc-50 md:left-1/2 md:-translate-x-1/2"
                     aria-hidden

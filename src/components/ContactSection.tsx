@@ -27,19 +27,21 @@ export function ContactSection() {
       <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
           <ScrollReveal>
-            <p className="text-xs tracking-[0.35em] text-zinc-500 uppercase">
-              Contact
-            </p>
-            <h2 className="font-heading mt-4 text-4xl leading-tight font-light tracking-tight text-white md:text-5xl lg:text-6xl">
-              Let&apos;s Create Something Beautiful Together
-            </h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-400">
-              Whether you&apos;re planning a wedding, commissioning a portrait
-              session, or collaborating on an editorial project—{siteConfig.name}{" "}
-              would love to hear your vision.
-            </p>
+            <div className="text-center lg:text-left">
+              <p className="text-xs tracking-[0.35em] text-zinc-500 uppercase">
+                Contact
+              </p>
+              <h2 className="font-heading mt-4 text-4xl leading-tight font-light tracking-tight text-white md:text-5xl lg:text-6xl">
+                Let&apos;s Create Something Beautiful Together
+              </h2>
+              <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-zinc-400 lg:mx-0">
+                Whether you&apos;re planning a wedding, commissioning a portrait
+                session, or collaborating on an editorial project—{siteConfig.name}{" "}
+                would love to hear your vision.
+              </p>
+            </div>
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-8">
+            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-8 lg:items-start lg:justify-start">
               {socialLinks.map(({ label, href }) => {
                 const Icon = socialIcons[label];
                 return (

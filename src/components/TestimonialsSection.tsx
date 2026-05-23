@@ -1,35 +1,36 @@
 "use client";
 
+import { PortfolioImage } from "@/components/PortfolioImage";
+import { SectionHeader } from "@/components/SectionHeader";
 import { testimonials } from "@/lib/data";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import Image from "next/image";
 
 export function TestimonialsSection() {
   return (
     <section className="bg-zinc-950 py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
         <ScrollReveal>
-          <p className="text-xs tracking-[0.35em] text-zinc-500 uppercase">
-            Testimonials
-          </p>
-          <h2 className="font-heading mt-3 text-4xl font-light tracking-tight text-white md:text-5xl">
-            Client Stories
-          </h2>
+          <SectionHeader
+            label="Testimonials"
+            title="Client Stories"
+            theme="dark"
+          />
         </ScrollReveal>
 
         <div className="mt-16 grid gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
             <ScrollReveal key={testimonial.id} delay={index * 0.1}>
-              <blockquote className="flex h-full flex-col border border-zinc-800 p-8 transition-colors duration-300 hover:border-zinc-600 md:p-10">
+              <blockquote className="flex h-full flex-col border border-zinc-800 p-8 text-center transition-colors duration-300 hover:border-zinc-600 md:p-10 md:text-left">
                 <p className="flex-1 text-base leading-relaxed text-zinc-300 italic">
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
-                <footer className="mt-8 flex items-center gap-4 border-t border-zinc-800 pt-8">
+                <footer className="mt-8 flex flex-col items-center gap-4 border-t border-zinc-800 pt-8 md:flex-row md:items-center">
                   <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full">
-                    <Image
+                    <PortfolioImage
                       src={testimonial.image}
                       alt={testimonial.name}
                       fill
+                      shimmer="dark"
                       className="object-cover"
                       sizes="48px"
                       loading="lazy"

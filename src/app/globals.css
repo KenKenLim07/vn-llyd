@@ -51,3 +51,24 @@ body {
   background: #18181b;
   color: #fafafa;
 }
+
+@keyframes image-shimmer {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.image-shimmer {
+  animation: image-shimmer 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-shimmer {
+    animation: none;
+    opacity: 0.6;
+  }
+}

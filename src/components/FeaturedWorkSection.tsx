@@ -1,9 +1,10 @@
 "use client";
 
+import { PortfolioImage } from "@/components/PortfolioImage";
+import { SectionHeader } from "@/components/SectionHeader";
 import { workCategories } from "@/lib/data";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { motion, useReducedMotion } from "framer-motion";
-import Image from "next/image";
 
 export function FeaturedWorkSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -12,12 +13,10 @@ export function FeaturedWorkSection() {
     <section id="work" className="bg-zinc-50 py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
         <ScrollReveal>
-          <p className="text-xs tracking-[0.35em] text-zinc-500 uppercase">
-            Selected Work
-          </p>
-          <h2 className="font-heading mt-3 text-4xl font-light tracking-tight text-zinc-950 md:text-5xl lg:text-6xl">
-            Featured Collections
-          </h2>
+          <SectionHeader
+            label="Selected Work"
+            title="Featured Collections"
+          />
         </ScrollReveal>
 
         <div className="mt-20 space-y-24 md:space-y-32 lg:space-y-40">
@@ -32,7 +31,7 @@ export function FeaturedWorkSection() {
                   }`}
                 >
                   <div
-                    className={`relative overflow-hidden ${
+                    className={`relative mx-auto w-full max-w-md overflow-hidden lg:mx-0 lg:max-w-none ${
                       category.aspect === "tall"
                         ? "aspect-[3/4]"
                         : "aspect-[4/3]"
@@ -43,10 +42,11 @@ export function FeaturedWorkSection() {
                       whileHover={prefersReducedMotion ? {} : { scale: 1.03 }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <Image
+                      <PortfolioImage
                         src={category.image}
                         alt={`${category.title} photography collection`}
                         fill
+                        shimmer="light"
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 50vw"
                         loading="lazy"
@@ -55,7 +55,7 @@ export function FeaturedWorkSection() {
                   </div>
 
                   <div
-                    className={`flex flex-col justify-center ${
+                    className={`flex flex-col items-center text-center lg:items-start lg:text-left ${
                       isReversed ? "lg:[direction:ltr]" : ""
                     }`}
                   >
