@@ -45,11 +45,11 @@ export const client: ClientDefinition = {
       primaryCta: { label: "View Our Work", href: "#work" },
       secondaryCta: { label: "Book Coverage", href: "#contact" },
       imageAlt:
-        "Cinematic aerial mountain view — Republik Works Production photo and video coverage",
+        "Cinematic mountain landscape at golden hour — Republik Works Production photo and video coverage",
     },
   },
   images: {
-    hero: photos("aerial-mountains.jpg"),
+    hero: photos("hero.jpg"),
     mountains: photos("aerial-mountains.jpg"),
     portraitA: photos("commercial-portrait.jpg"),
     portraitBack: photos("commercial-portrait.jpg"),
