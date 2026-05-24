@@ -2,11 +2,12 @@
 
 import { useReducedMotion } from "framer-motion";
 import Image, { type ImageProps } from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type ShimmerTone = "light" | "dark";
 
 export type PortfolioImageProps = ImageProps & {
+  /** Background tone behind the image while loading */
   shimmer?: ShimmerTone;
   wrapperClassName?: string;
 };
@@ -22,11 +23,30 @@ export function PortfolioImage({
   alt,
   onLoad,
   fill,
+  src,
   ...props
 }: PortfolioImageProps) {
   const [loaded, setLoaded] = useState(false);
   const prefersReducedMotion = useReducedMotion();
-  const isVisible = loaded || prefersReducedMotion;
+  const isLoaded = loaded || prefersReducedMotion;
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [src]);
+
+  const markLoaded = useCallback(() => {
+    setLoaded(true);
+  }, []);
+
+  /** Cached images can finish before React attaches onLoad — check ref on mount */
+  const handleImageRef = useCallback(
+    (node: HTMLImageElement | null) => {
+      if (node?.complete && node.naturalWidth > 0) {
+        markLoaded();
+      }
+    },
+    [markLoaded, src],
+  );
 
   return (
     <div
@@ -39,23 +59,27 @@ export function PortfolioImage({
       <div
         className={cn(
           "absolute inset-0 z-0",
-          shimmer === "dark" ? "bg-zinc-800" : "bg-zinc-200",
-          !isVisible && "image-shimmer",
+          shimmer === "dark" ? "bg-zinc-900" : "bg-zinc-200",
         )}
         aria-hidden
       />
       <Image
         {...props}
+        ref={handleImageRef}
+        src={src}
         fill={fill}
         alt={alt}
         className={cn(
           "relative z-10",
           className,
-          isVisible ? "opacity-100" : "opacity-0",
-          !prefersReducedMotion && "transition-opacity duration-500 ease-out",
+          !isLoaded && !prefersReducedMotion
+            ? "scale-[1.03] blur-xl brightness-[0.85]"
+            : "scale-100 blur-0 brightness-100",
+          !prefersReducedMotion &&
+            "transition-[filter,transform] duration-700 ease-out",
         )}
         onLoad={(event) => {
-          setLoaded(true);
+          markLoaded();
           onLoad?.(event);
         }}
       />
