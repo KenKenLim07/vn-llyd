@@ -39,7 +39,7 @@ export function ContactSection() {
                       href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
                       className="inline-flex cursor-pointer items-center gap-3 text-zinc-300 transition-colors duration-200 hover:text-white"
                     >
-                      <Phone className="h-4 w-4 shrink-0 text-blue-400" />
+                      <Phone className="h-4 w-4 shrink-0 text-zinc-500" />
                       <span className="text-sm tracking-wide">
                         {contactInfo.phoneDisplay}
                       </span>
@@ -55,14 +55,14 @@ export function ContactSection() {
                         rel="noopener noreferrer"
                         className="inline-flex cursor-pointer items-start gap-3 text-zinc-300 transition-colors duration-200 hover:text-white"
                       >
-                        <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
+                        <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
                         <span className="max-w-xs text-sm leading-relaxed tracking-wide">
                           {contactInfo.address}
                         </span>
                       </a>
                     ) : (
                       <span className="inline-flex items-start gap-3 text-zinc-300">
-                        <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
+                        <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
                         <span className="max-w-xs text-sm leading-relaxed tracking-wide">
                           {contactInfo.address}
                         </span>

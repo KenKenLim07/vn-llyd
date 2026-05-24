@@ -5,27 +5,6 @@ import { heroContent, siteConfig } from "@/lib/data";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
-function ViewfinderCorners() {
-  const corner =
-    "absolute h-10 w-10 border-white/35 md:h-14 md:w-14";
-
-  return (
-    <motion.div
-      className="pointer-events-none absolute inset-6 z-30 md:inset-10"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.2, delay: 0.8 }}
-      aria-hidden
-    >
-      <span className={`${corner} top-0 left-0 border-t-2 border-l-2`} />
-      <span className={`${corner} top-0 right-0 border-t-2 border-r-2`} />
-      <span className={`${corner} bottom-0 left-0 border-b-2 border-l-2`} />
-      <span className={`${corner} bottom-0 right-0 border-b-2 border-r-2`} />
-      <span className="absolute top-1/2 left-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/40" />
-    </motion.div>
-  );
-}
-
 export function HeroAerial() {
   const prefersReducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
@@ -64,8 +43,6 @@ export function HeroAerial() {
         <div className="absolute inset-0 z-20 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-zinc-950/20" />
         <div className="absolute inset-0 z-20 bg-black/30" />
       </motion.div>
-
-      <ViewfinderCorners />
 
       <motion.div
         className="relative z-30 w-full px-6 pb-28 pt-24 text-center md:pb-32 md:pt-0 md:text-left lg:px-16 md:px-12"
