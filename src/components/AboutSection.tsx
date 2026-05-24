@@ -2,7 +2,7 @@
 
 import { PortfolioImage } from "@/components/PortfolioImage";
 import { SectionHeader } from "@/components/SectionHeader";
-import { aboutContent } from "@/lib/data";
+import { aboutContent, siteConfig } from "@/lib/data";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function AboutSection() {
@@ -26,7 +26,7 @@ export function AboutSection() {
 
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <ScrollReveal className="w-full">
-              <SectionHeader label="About" title="The Photographer" />
+              <SectionHeader label="About" title={siteConfig.aboutTitle} />
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>

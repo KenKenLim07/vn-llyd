@@ -1,18 +1,10 @@
 "use client";
 
-import { siteConfig, socialLinks } from "@/lib/data";
+import { contactInfo, siteConfig, socialLinks } from "@/lib/data";
+import { socialIconMap } from "@/lib/social-icons";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import {
-  FacebookIcon,
-  InstagramIcon,
-} from "@/components/icons/SocialIcons";
-import { Send } from "lucide-react";
+import { MapPin, Phone, Send } from "lucide-react";
 import { FormEvent, useState } from "react";
-
-const socialIcons = {
-  Facebook: FacebookIcon,
-  Instagram: InstagramIcon,
-} as const;
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
@@ -35,15 +27,55 @@ export function ContactSection() {
                 Let&apos;s Create Something Beautiful Together
               </h2>
               <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-zinc-400 lg:mx-0">
-                Whether you&apos;re planning a wedding, commissioning a portrait
-                session, or collaborating on an editorial project—{siteConfig.name}{" "}
-                would love to hear your vision.
+                {siteConfig.contactIntro}
               </p>
             </div>
 
-            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-8 lg:items-start lg:justify-start">
+            {(contactInfo.phone || contactInfo.address) && (
+              <ul className="mt-8 space-y-4 text-center lg:text-left">
+                {contactInfo.phone && (
+                  <li>
+                    <a
+                      href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+                      className="inline-flex cursor-pointer items-center gap-3 text-zinc-300 transition-colors duration-200 hover:text-white"
+                    >
+                      <Phone className="h-4 w-4 shrink-0 text-blue-400" />
+                      <span className="text-sm tracking-wide">
+                        {contactInfo.phoneDisplay}
+                      </span>
+                    </a>
+                  </li>
+                )}
+                {contactInfo.address && (
+                  <li>
+                    {contactInfo.mapsLink ? (
+                      <a
+                        href={contactInfo.mapsLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex cursor-pointer items-start gap-3 text-zinc-300 transition-colors duration-200 hover:text-white"
+                      >
+                        <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
+                        <span className="max-w-xs text-sm leading-relaxed tracking-wide">
+                          {contactInfo.address}
+                        </span>
+                      </a>
+                    ) : (
+                      <span className="inline-flex items-start gap-3 text-zinc-300">
+                        <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
+                        <span className="max-w-xs text-sm leading-relaxed tracking-wide">
+                          {contactInfo.address}
+                        </span>
+                      </span>
+                    )}
+                  </li>
+                )}
+              </ul>
+            )}
+
+            <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-4 lg:justify-start">
               {socialLinks.map(({ label, href }) => {
-                const Icon = socialIcons[label];
+                const Icon = socialIconMap[label];
                 return (
                   <a
                     key={label}
@@ -68,7 +100,7 @@ export function ContactSection() {
                 </p>
                 <p className="mt-4 text-zinc-400">
                   Your message has been received.{" "}
-                  {siteConfig.name} will be in touch shortly.
+                  {siteConfig.contactThankYou}
                 </p>
               </div>
             ) : (
@@ -125,21 +157,11 @@ export function ContactSection() {
                     <option value="" disabled className="bg-zinc-950">
                       Select a project type
                     </option>
-                    <option value="wedding" className="bg-zinc-950">
-                      Wedding Photography
-                    </option>
-                    <option value="portrait" className="bg-zinc-950">
-                      Portrait Session
-                    </option>
-                    <option value="travel" className="bg-zinc-950">
-                      Travel / Editorial
-                    </option>
-                    <option value="event" className="bg-zinc-950">
-                      Event Coverage
-                    </option>
-                    <option value="other" className="bg-zinc-950">
-                      Other
-                    </option>
+                    {siteConfig.contactProjectTypes.map(({ value, label }) => (
+                      <option key={value} value={value} className="bg-zinc-950">
+                        {label}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -155,7 +177,7 @@ export function ContactSection() {
                     rows={4}
                     required
                     className="w-full resize-none border-b border-zinc-700 bg-transparent py-3 text-white outline-none transition-colors duration-200 focus:border-white"
-                    placeholder="Tell me about your vision..."
+                    placeholder="Tell us about your event or project..."
                   />
                 </div>
                 <button
@@ -169,6 +191,21 @@ export function ContactSection() {
             )}
           </ScrollReveal>
         </div>
+
+        {contactInfo.mapEmbedUrl && (
+          <ScrollReveal delay={0.2} className="mt-16">
+            <div className="overflow-hidden border border-zinc-800">
+              <iframe
+                title={`${siteConfig.brand} studio location`}
+                src={contactInfo.mapEmbedUrl}
+                className="h-72 w-full grayscale transition-[filter] duration-300 hover:grayscale-0 md:h-96"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+          </ScrollReveal>
+        )}
       </div>
     </section>
   );

@@ -1,15 +1,15 @@
 import { client as templateClient } from "./clients/template";
 import { client as vnLlydClient } from "./clients/vn-llyd";
-import { client as zydFloresClient } from "./clients/zyd-flores";
+import { client as republikWorksClient } from "./clients/republik-works";
 import type { ClientDefinition } from "./types";
 
-export const CLIENT_IDS = ["template", "vn-llyd", "zyd-flores"] as const;
+export const CLIENT_IDS = ["template", "vn-llyd", "republik-works"] as const;
 export type ClientId = (typeof CLIENT_IDS)[number];
 
 const registry: Record<ClientId, ClientDefinition> = {
   template: templateClient,
   "vn-llyd": vnLlydClient,
-  "zyd-flores": zydFloresClient,
+  "republik-works": republikWorksClient,
 };
 
 export function getClientId(): ClientId {

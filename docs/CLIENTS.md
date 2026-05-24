@@ -95,7 +95,7 @@ Set `sections.hero` in a client config to change layout without forking the repo
 | Variant | Best for | Client |
 |---------|----------|--------|
 | `cinematic` | Default full-screen parallax hero | template, vn-llyd |
-| `aerial` | Drone / production — Ken Burns zoom, viewfinder overlay, blue CTAs | zyd-flores |
+| `aerial` | Drone / production — Ken Burns zoom, viewfinder overlay, blue CTAs | republik-works |
 
 ```ts
 sections: {

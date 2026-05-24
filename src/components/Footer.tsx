@@ -1,14 +1,6 @@
 import { navLinks, siteConfig, socialLinks } from "@/lib/data";
-import {
-  FacebookIcon,
-  InstagramIcon,
-} from "@/components/icons/SocialIcons";
+import { socialIconMap } from "@/lib/social-icons";
 import Link from "next/link";
-
-const socialIcons = {
-  Facebook: FacebookIcon,
-  Instagram: InstagramIcon,
-} as const;
 
 export function Footer() {
   return (
@@ -22,12 +14,13 @@ export function Footer() {
             >
               {siteConfig.brand}
             </Link>
-            <p className="mt-2 text-xs tracking-[0.15em] text-zinc-500 uppercase">
-              {siteConfig.name}
-            </p>
+            {!siteConfig.studio && (
+              <p className="mt-2 text-xs tracking-[0.15em] text-zinc-500 uppercase">
+                {siteConfig.name}
+              </p>
+            )}
             <p className="mt-4 max-w-xs text-sm text-zinc-500">
-              Wedding, travel, portrait, and event photography for those who
-              value timeless imagery.
+              {siteConfig.footerTagline}
             </p>
           </div>
 
@@ -48,7 +41,7 @@ export function Footer() {
 
           <div className="flex gap-6">
             {socialLinks.map(({ label, href }) => {
-              const Icon = socialIcons[label];
+              const Icon = socialIconMap[label];
               return (
                 <a
                   key={label}

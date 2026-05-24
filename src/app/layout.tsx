@@ -18,7 +18,9 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
-const siteTitle = `${siteConfig.name} — ${siteConfig.brand}`;
+const siteTitle = siteConfig.studio
+  ? siteConfig.brand
+  : `${siteConfig.name} — ${siteConfig.brand}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -26,18 +28,28 @@ export const metadata: Metadata = {
     default: siteTitle,
     template: `%s | ${siteConfig.brand}`,
   },
-  description:
-    "ShutterStories Photography by Vn Llyd — wedding, travel, portrait, and editorial imagery that captures light, emotion, and timeless moments.",
-  keywords: [
-    "ShutterStories Photography",
-    "Vn Llyd photographer",
-    "wedding photographer",
-    "travel photographer",
-    "portrait photographer",
-    "Philippines photographer",
-    "fine art photography",
-  ],
-  authors: [{ name: siteConfig.name }],
+  description: siteConfig.tagline,
+  keywords: siteConfig.studio
+    ? [
+        siteConfig.brand,
+        "photo studio",
+        "video live coverage",
+        "wedding coverage",
+        "event photography",
+        "festival coverage",
+        "aerial cinematography",
+        "Philippines",
+      ]
+    : [
+        siteConfig.brand,
+        `${siteConfig.name} photographer`,
+        "wedding photographer",
+        "travel photographer",
+        "portrait photographer",
+        "Philippines photographer",
+        "fine art photography",
+      ],
+  authors: [{ name: siteConfig.studio ? siteConfig.brand : siteConfig.name }],
   creator: siteConfig.brand,
   openGraph: {
     type: "website",
@@ -45,8 +57,7 @@ export const metadata: Metadata = {
     url: siteConfig.siteUrl,
     siteName: siteConfig.brand,
     title: siteTitle,
-    description:
-      "Cinematic photography portfolio by Vn Llyd — portraits, weddings, travel, and editorial work.",
+    description: siteConfig.tagline,
     images: [
       {
         url: ogImage,
@@ -59,8 +70,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
-    description:
-      "Cinematic photography portfolio by Vn Llyd — portraits, weddings, travel, and editorial work.",
+    description: siteConfig.tagline,
     images: [ogImage],
   },
   robots: {

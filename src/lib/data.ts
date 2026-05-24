@@ -4,6 +4,7 @@ const client = resolveClient();
 
 export const siteConfig = client.siteConfig;
 export const socialLinks = client.socialLinks;
+export const contactInfo = client.contactInfo;
 export const workCategories = client.workCategories;
 export const projects = client.projects;
 export const galleryImages = client.galleryImages;

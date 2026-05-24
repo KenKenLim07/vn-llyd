@@ -1,5 +1,6 @@
 import { getClientDefinition } from "./registry";
 import type { ClientDefinition } from "./types";
+import type { SocialLink } from "./types";
 
 function pickImage(client: ClientDefinition, key: string): string {
   const src = client.images[key];
@@ -17,22 +18,72 @@ export function resolveClient(definition = getClientDefinition()) {
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? definition.site.defaultSiteUrl;
 
+  const studio = definition.site.studio === true;
+  const personName = definition.site.name ?? definition.site.brand;
+
   const siteConfig = {
     ...definition.site,
+    studio,
+    name: personName,
+    heroHeadline: studio ? definition.site.brand : personName,
     siteUrl,
     copyright: `© ${new Date().getFullYear()} ${definition.site.brand}. All rights reserved.`,
+    footerTagline:
+      definition.site.footerTagline ??
+      "Wedding, travel, portrait, and event photography for those who value timeless imagery.",
+    contactIntro:
+      definition.site.contactIntro ??
+      `Whether you're planning a wedding, commissioning a portrait session, or collaborating on an editorial project—${personName} would love to hear your vision.`,
+    contactThankYou:
+      definition.site.contactThankYou ??
+      `${personName} will be in touch shortly.`,
+    aboutTitle: definition.site.aboutTitle ?? "The Photographer",
+    contactProjectTypes: definition.site.contactProjectTypes ?? [
+      { value: "wedding", label: "Wedding Photography" },
+      { value: "portrait", label: "Portrait Session" },
+      { value: "travel", label: "Travel / Editorial" },
+      { value: "event", label: "Event Coverage" },
+      { value: "other", label: "Other" },
+    ],
   };
 
-  const socialLinks = [
-    definition.site.facebook && {
-      label: "Facebook" as const,
-      href: definition.site.facebook,
-    },
-    definition.site.instagram && {
-      label: "Instagram" as const,
-      href: definition.site.instagram,
-    },
-  ].filter(Boolean) as { label: "Facebook" | "Instagram"; href: string }[];
+  const socialLinks = (
+    [
+      definition.site.facebook && {
+        label: "Facebook" as const,
+        href: definition.site.facebook,
+      },
+      definition.site.instagram && {
+        label: "Instagram" as const,
+        href: definition.site.instagram,
+      },
+      definition.site.tiktok && {
+        label: "TikTok" as const,
+        href: definition.site.tiktok,
+      },
+      definition.site.youtube && {
+        label: "YouTube" as const,
+        href: definition.site.youtube,
+      },
+    ] as const
+  ).filter(Boolean) as SocialLink[];
+
+  const mapEmbedUrl =
+    definition.site.mapEmbedUrl ??
+    (definition.site.mapQuery
+      ? `https://maps.google.com/maps?q=${encodeURIComponent(definition.site.mapQuery)}&z=15&output=embed`
+      : undefined);
+
+  const contactInfo = {
+    phone: definition.site.phone,
+    phoneDisplay:
+      definition.site.phoneDisplay ?? definition.site.phone,
+    address: definition.site.address,
+    mapEmbedUrl,
+    mapsLink: definition.site.mapQuery
+      ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(definition.site.mapQuery)}`
+      : undefined,
+  };
 
   const workCategories = definition.workCategories.map((category) => ({
     ...category,
@@ -61,7 +112,9 @@ export function resolveClient(definition = getClientDefinition()) {
 
   const aboutContent = {
     portrait: definition.about.portraitPath,
-    portraitAlt: `${siteConfig.name} — ${siteConfig.brand}`,
+    portraitAlt: studio
+      ? `${siteConfig.brand} — photo and video production studio`
+      : `${personName} — ${siteConfig.brand}`,
     story: definition.about.story,
     philosophy: definition.about.philosophy,
     experience: definition.about.experience,
@@ -92,6 +145,7 @@ export function resolveClient(definition = getClientDefinition()) {
     clientId: definition.id,
     siteConfig,
     socialLinks,
+    contactInfo,
     workCategories,
     projects,
     galleryImages,

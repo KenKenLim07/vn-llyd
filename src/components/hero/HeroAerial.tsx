@@ -87,7 +87,7 @@ export function HeroAerial() {
           </p>
 
           <h1 className="font-heading max-w-4xl text-5xl leading-[0.95] font-light tracking-tight text-white md:text-7xl lg:text-8xl">
-            {siteConfig.name}
+            {siteConfig.heroHeadline}
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-200 md:text-lg">

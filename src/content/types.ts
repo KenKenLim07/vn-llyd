@@ -2,13 +2,41 @@ export type AspectRatio = "tall" | "wide";
 
 export type GallerySize = "small" | "medium" | "large";
 
+export type ContactProjectOption = {
+  value: string;
+  label: string;
+};
+
+export type SocialPlatform = "Facebook" | "Instagram" | "TikTok" | "YouTube";
+
+export type SocialLink = {
+  label: SocialPlatform;
+  href: string;
+};
+
 export type ClientSiteConfig = {
   brand: string;
   brandShort: string;
-  name: string;
+  /** Person name for solo photographers. Omit when `studio` is true. */
+  name?: string;
   tagline: string;
+  /** Studio / team brand — hero and metadata lead with `brand`, not a person name */
+  studio?: boolean;
+  footerTagline?: string;
+  contactIntro?: string;
+  contactThankYou?: string;
+  aboutTitle?: string;
+  contactProjectTypes?: ContactProjectOption[];
   facebook?: string;
   instagram?: string;
+  tiktok?: string;
+  youtube?: string;
+  phone?: string;
+  phoneDisplay?: string;
+  address?: string;
+  /** Google Maps embed URL. Built from `mapQuery` when omitted. */
+  mapEmbedUrl?: string;
+  mapQuery?: string;
   /** Fallback when NEXT_PUBLIC_SITE_URL is unset */
   defaultSiteUrl: string;
 };
