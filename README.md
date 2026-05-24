@@ -2,6 +2,8 @@
 
 A premium, editorial photography portfolio built with Next.js 16 (App Router), Tailwind CSS 4, TypeScript, and Framer Motion.
 
+**Multi-client template:** one codebase, many deployments. Each photographer gets their own Vercel project and env vars — no forks required.
+
 ## Features
 
 - Full-screen cinematic hero with parallax
@@ -17,34 +19,42 @@ A premium, editorial photography portfolio built with Next.js 16 (App Router), T
 
 ```bash
 npm install
+cp .env.example .env.local   # pick a client (see below)
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Customize
+## Multi-client workflow
 
-Edit `src/lib/data.ts` for copy, projects, and contact details.
+| Env var | Purpose |
+|---------|---------|
+| `NEXT_PUBLIC_CLIENT` | Client config id (`template`, `vn-llyd`, …) |
+| `NEXT_PUBLIC_SITE_URL` | Public URL for SEO / Open Graph |
 
-### Replace photos
+- **`main` branch + no env** → generic `template` demo (stock photos)
+- **Vn Llyd production** → `NEXT_PUBLIC_CLIENT=vn-llyd` on Vercel
 
-| Folder | Purpose |
-|--------|---------|
-| `public/portfolio/` | Hero, travel, street, and other placeholder shots |
-| `public/clients-photos/` | Client weddings, events, and portraits |
-| `public/client-profile/` | About section portrait (`vn-llyd.jpg`) |
+See [docs/CLIENTS.md](docs/CLIENTS.md) for cold-outreach setup.
 
-Drop in new JPGs using the **same filenames** — no code changes needed. Image keys are mapped in `src/lib/images.ts`.
+### Add a new client
 
-To re-fetch Unsplash placeholders: `./scripts/download-portfolio-images.sh`
-
-### Vercel
-
-Set environment variable:
-
+```bash
+chmod +x scripts/new-client.sh
+./scripts/new-client.sh jane-doe "Jane Doe" "Jane Doe Photography"
 ```
-NEXT_PUBLIC_SITE_URL=https://shutterstories-photography.vercel.app
-```
+
+Then register the client in `src/content/registry.ts`, add photos under `public/clients/jane-doe/`, and deploy.
+
+### Asset layout
+
+| Path | Purpose |
+|------|---------|
+| `public/portfolio/` | Shared stock placeholders (template demo) |
+| `public/clients/<id>/profile.jpg` | About section portrait |
+| `public/clients/<id>/photos/` | Client weddings, events, portraits |
+
+Client configs live in `src/content/clients/<id>.ts`. The app resolves content via `src/content/resolve-client.ts`; `src/lib/data.ts` and `src/lib/images.ts` re-export the active client.
 
 ## Tech Stack
 
@@ -60,4 +70,3 @@ NEXT_PUBLIC_SITE_URL=https://shutterstories-photography.vercel.app
 npm run build
 npm start
 ```
-# vn-llyd
